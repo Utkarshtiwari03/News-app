@@ -20,10 +20,10 @@ object Versions{
     const val glide = "4.12.0"
     const val viewModelDelegate = "1.6.0"
 
-    const val dagger = "2.56.2"
+    const val dagger = "2.51.1"
     const val hiltCompiler = "1.2.0"
 
-    const val roomVersion = "2.4.3"
+    const val roomVersion = "2.3.0"
 
     const val swipeRefresh= "1.1.0"
 
