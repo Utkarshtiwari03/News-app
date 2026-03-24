@@ -44,6 +44,8 @@ dependencies {
 
     implementation(project(":search:search_presentation"))
     implementation(project(":news:news_presentation"))
+    implementation(project(":news:news_data"))
+    implementation(project(":news:news_domain"))
     implementation(project(":common:common_utils"))
 //    implementation(libs.androidx.core.ktx)
     implementation(Deps.core)
@@ -55,8 +57,15 @@ dependencies {
     androidTestImplementation(AndroidTestImplementation.junit)
     androidTestImplementation(AndroidTestImplementation.espresso)
 
+    implementation(Coroutines.coroutineCore)
+    implementation(Coroutines.coroutineAndroid)
+    implementation(CoroutinesLifecycleScope.lifecycleRuntime)
+    implementation(CoroutinesLifecycleScope.lifecycleViewModel)
+
     implementation(LottieAnimations.lottieAnimations)
     implementation(DaggerHilt.hilt)
     kapt(DaggerHilt.hiltAndroidCompiler)
     kapt(DaggerHilt.hiltCompiler)
+    implementation(Room.room)
+    kapt(Room.roomCompiler)
 }
