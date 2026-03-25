@@ -2,6 +2,7 @@ package com.utkarsh.news_data.di
 
 import com.utkarsh.news_data.network.NewsApiService
 import com.utkarsh.news_data.repository.NewsRepositoryImpl
+import com.utkarsh.news_data.room.NewsDAO
 import com.utkarsh.news_domain.repository.NewsRepository
 import dagger.Module
 import dagger.Provides
@@ -20,7 +21,7 @@ object NewsDataModule {
     }
 
     @Provides
-    fun provideNewsRepository(newsApiService: NewsApiService):NewsRepository{
-        return NewsRepositoryImpl(newsApiService)
+    fun provideNewsRepository(newsApiService: NewsApiService,newsDAO: NewsDAO):NewsRepository{
+        return NewsRepositoryImpl(newsApiService,newsDAO)
     }
 }

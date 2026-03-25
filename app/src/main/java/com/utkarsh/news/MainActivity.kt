@@ -1,6 +1,8 @@
 package com.utkarsh.news
 
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
@@ -33,8 +35,9 @@ class MainActivity : AppCompatActivity() {
             insets
         }
 
-        provider.getActivities(Activities.NewsActivity).navigate(this)
-
-
+        Handler(Looper.myLooper()!!).postDelayed({
+            provider.getActivities(Activities.NewsActivity).navigate(this)
+            finish()
+        },1500)
     }
 }

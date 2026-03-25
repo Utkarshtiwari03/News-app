@@ -1,9 +1,14 @@
 package com.utkarsh.news_domain.model
 
+import androidx.room.Entity
+import androidx.room.PrimaryKey
+
+@Entity
 data class Article(
-    val author: String?="author",
-    val content: String?="content",
-    val description: String?="description",
-    val title: String?="title",
-    val urlToImage: String?="https://static.vecteezy.com/system/resources/thumbnails/057/068/323/small/single-fresh-red-strawberry-on-table-green-background-food-fruit-sweet-macro-juicy-plant-image-photo.jpg"
+    val author: String,
+    val content: String,
+    val description: String,
+    @PrimaryKey(autoGenerate = false)
+    val title: String,
+    val urlToImage: String
 )
