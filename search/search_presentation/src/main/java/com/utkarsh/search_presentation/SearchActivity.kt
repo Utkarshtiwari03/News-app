@@ -13,11 +13,13 @@ import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.core.widget.doAfterTextChanged
 import androidx.lifecycle.lifecycleScope
+import com.google.android.material.datepicker.MaterialDatePicker
 import com.utkarsh.common_utils.Navigator
 import com.utkarsh.search_presentation.databinding.ActivitySearchBinding
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
+import java.text.SimpleDateFormat
 
 @AndroidEntryPoint
 class SearchActivity : AppCompatActivity() {
@@ -69,16 +71,42 @@ class SearchActivity : AppCompatActivity() {
             }
         }
     }
-//    https://newsapi.org/v2/everything?q=apple&from=2026-03-24&to=2026-03-24&sortBy=popularity&apiKey=
 
     private fun initView() {
         binding.searchResult.adapter=newsAdapter
 
         binding.searchTitle.doAfterTextChanged {
             val map=mutableMapOf<String,String>()
-            map[Constant.ApiKey]=""
+            map[Constant.ApiKey]=Constant.KEY
             map[Constant.QUERY]=it.toString()
             viewModel.getSearchArticles(map)
+        }
+
+        binding.ivRange.setOnClickListener {
+            val datePicker = MaterialDatePicker.Builder.dateRangePicker().build()
+            datePicker.show(this.supportFragmentManager,"range picker")
+
+            datePicker.addOnPositiveButtonClickListener {
+                val start = changeDateFormat(it.first)
+                val end = changeDateFormat(it.second)
+
+                val map = mutableMapOf<String,String>()
+                map[Constant.ApiKey]=Constant.KEY
+                map[Constant.QUERY]=binding.searchTitle.text.toString()
+                map[Constant.START_DATE]=start
+                map[Constant.END_DATE]=end
+
+                viewModel.getSearchArticles(map)
+            }
+        }
+    }
+
+    fun changeDateFormat(long:Long?):String{
+        return try {
+            val simpleDateFormat= SimpleDateFormat("yyyy-MM-dd")
+            simpleDateFormat.format(long)
+        }catch (e:Exception){
+            ""
         }
     }
 }

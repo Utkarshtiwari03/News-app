@@ -5,6 +5,7 @@ object Constant {
     const val START_DATE="from"
     const val END_DATE="to"
     const val ApiKey="apiKey"
+    const val KEY=""
     const val QUERY="q"
 
 }
