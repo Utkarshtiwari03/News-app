@@ -12,13 +12,19 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.lifecycle.lifecycleScope
+import com.utkarsh.common_utils.Activities
 import com.utkarsh.common_utils.Navigator
 import com.utkarsh.news_presentation.databinding.ActivityNewsBinding
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collectLatest
+import javax.inject.Inject
 
 @AndroidEntryPoint
 class NewsActivity : AppCompatActivity() {
+
+    @Inject
+    lateinit var provider:Navigator.Provider
+
     companion object{
         fun launchActivity(activity: Activity){
             val intent= Intent(activity,NewsActivity::class.java)
@@ -51,6 +57,9 @@ class NewsActivity : AppCompatActivity() {
 
     private fun initViews() {
         binding.rvArticles.adapter=newsAdapter
+        binding.searchBar.setOnClickListener{
+            provider.getActivities(Activities.SearchActivity).navigate(this)
+        }
     }
 
     private fun setObservers(){

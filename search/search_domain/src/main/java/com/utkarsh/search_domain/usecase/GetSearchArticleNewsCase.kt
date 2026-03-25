@@ -8,7 +8,7 @@ import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 import javax.inject.Inject
 
-class getSearchArticleNewsCase @Inject constructor(private val searchRepository: SearchRepository) {
+class GetSearchArticleNewsCase @Inject constructor(private val searchRepository: SearchRepository) {
     operator fun invoke(map:MutableMap<String,String>): Flow<Resource<List<Article>>> = flow {
         emit(Resource.Loading())
         try{

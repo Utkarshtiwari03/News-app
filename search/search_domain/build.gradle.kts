@@ -1,6 +1,8 @@
 plugins {
     alias(libs.plugins.android.library)
     alias(libs.plugins.kotlin.android)
+    kotlin("kapt")
+    alias(libs.plugins.hilt)
 }
 
 android {
@@ -43,4 +45,8 @@ dependencies {
     testImplementation(TestImplementation.junit)
     androidTestImplementation(AndroidTestImplementation.junit)
     androidTestImplementation(AndroidTestImplementation.espresso)
+
+    implementation(DaggerHilt.hilt)
+    kapt(DaggerHilt.hiltAndroidCompiler)
+    kapt(DaggerHilt.hiltCompiler)
 }
