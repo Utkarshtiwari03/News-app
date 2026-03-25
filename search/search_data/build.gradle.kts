@@ -34,6 +34,8 @@ android {
 
 dependencies {
 
+    implementation(project(":search:search_domain"))
+
     implementation(Deps.core)
     implementation(Deps.appCompat)
     implementation(Deps.androidMaterial)
