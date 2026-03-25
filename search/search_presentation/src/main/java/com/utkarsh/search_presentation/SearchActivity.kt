@@ -14,6 +14,7 @@ import androidx.core.view.WindowInsetsCompat
 import androidx.core.widget.doAfterTextChanged
 import androidx.lifecycle.lifecycleScope
 import com.google.android.material.datepicker.MaterialDatePicker
+import com.utkarsh.common_utils.Constants
 import com.utkarsh.common_utils.Navigator
 import com.utkarsh.search_presentation.databinding.ActivitySearchBinding
 import dagger.hilt.android.AndroidEntryPoint
@@ -77,7 +78,7 @@ class SearchActivity : AppCompatActivity() {
 
         binding.searchTitle.doAfterTextChanged {
             val map=mutableMapOf<String,String>()
-            map[Constant.ApiKey]=Constant.KEY
+            map[Constant.ApiKey]=Constants.API_KEY
             map[Constant.QUERY]=it.toString()
             viewModel.getSearchArticles(map)
         }
@@ -91,7 +92,7 @@ class SearchActivity : AppCompatActivity() {
                 val end = changeDateFormat(it.second)
 
                 val map = mutableMapOf<String,String>()
-                map[Constant.ApiKey]=Constant.KEY
+                map[Constant.ApiKey]=Constants.API_KEY
                 map[Constant.QUERY]=binding.searchTitle.text.toString()
                 map[Constant.START_DATE]=start
                 map[Constant.END_DATE]=end
