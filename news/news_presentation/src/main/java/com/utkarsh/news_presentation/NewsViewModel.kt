@@ -1,5 +1,6 @@
 package com.utkarsh.news_presentation
 
+import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.utkarsh.common_utils.network.Resource
@@ -26,12 +27,15 @@ class NewsViewModel @Inject constructor(private val getNewsArticleUseCase: GetNe
             when(it){
                 is Resource.Loading -> {
                     _newsArticle.value = NewsState(Loading = true)
+                    Log.d("ViewModel","Loading")
                 }
                 is Resource.Error -> {
                     _newsArticle.value=NewsState(Error=it.message)
+                    Log.d("ViewModel","Error -> ${it.message}")
                 }
                 is Resource.Success-> {
                     _newsArticle.value=NewsState(data = it.data)
+                    Log.d("ViewModel","Success -> ${it.data}")
                 }
             }
         }.launchIn(viewModelScope)
