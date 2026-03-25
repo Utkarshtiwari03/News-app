@@ -1,7 +1,7 @@
 plugins {
     alias(libs.plugins.android.library)
     alias(libs.plugins.kotlin.android)
-    kotlin("kapt")
+    alias(libs.plugins.ksp)
     alias(libs.plugins.hilt)
 }
 
@@ -48,8 +48,8 @@ dependencies {
     androidTestImplementation(AndroidTestImplementation.espresso)
 
     implementation(DaggerHilt.hilt)
-    kapt(DaggerHilt.hiltAndroidCompiler)
-    kapt(DaggerHilt.hiltCompiler)
+    ksp(DaggerHilt.hiltAndroidCompiler)
+    ksp(DaggerHilt.hiltCompiler)
     implementation(Retrofit.retrofit)
     implementation(Retrofit.gsonConvertor)
     implementation(Retrofit.okHttp)
