@@ -1,6 +1,8 @@
 plugins {
     alias(libs.plugins.android.library)
     alias(libs.plugins.kotlin.android)
+    alias(libs.plugins.ksp)
+    alias(libs.plugins.hilt)
 }
 
 android {
@@ -34,6 +36,8 @@ android {
 
 dependencies {
 
+    implementation(project(":search:search_domain"))
+
     implementation(Deps.core)
     implementation(Deps.appCompat)
     implementation(Deps.androidMaterial)
@@ -42,4 +46,11 @@ dependencies {
     testImplementation(TestImplementation.junit)
     androidTestImplementation(AndroidTestImplementation.junit)
     androidTestImplementation(AndroidTestImplementation.espresso)
+
+    implementation(DaggerHilt.hilt)
+    ksp(DaggerHilt.hiltAndroidCompiler)
+    ksp(DaggerHilt.hiltCompiler)
+    implementation(Retrofit.retrofit)
+    implementation(Retrofit.gsonConvertor)
+    implementation(Retrofit.okHttp)
 }
